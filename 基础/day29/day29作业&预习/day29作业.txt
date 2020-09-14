@@ -1,0 +1,40 @@
+必须能独立写出JDBCUtils工具类，保证用JDBCUtils工具类能完成功能，不用JDBCUtils工具类工具类也能够完成功能
+1.map中有如下数据(用户名=密码)
+	[liuyan=123456,wangbaoqiang=123321,fangbian=abcd,miejueshitai=123abc321]
+	在ip为127.0.0.1数据库名为stdb,连接数据库的用户名和密码为:admin和123456中有一个userinfo表相关字段为(id,username,password)
+	(1)将map中的手机号码取出来打印到控制台上
+		* 直接使用map集合的keySet()方法获取所有的key组成的Set集合,并遍历
+	(2)判断map中所有的用户名在userinfo表中是否存在存在则输出"该用户已注册",如果不存在将该用户名及对应的密码存入到userinfo表中
+    (map中的数据不需要修改)
+    	* 连接到数据库
+    	* 创建表
+    	drop database stdb;
+    	create database stdb;
+    	use stdb;
+    	create table userinfo(
+    		id int(10) primary key auto_increment,
+    		username varchar(200),
+    		password varchar(200)
+    	);    	
+			
+2.一个数据库stdb,用户名为admin 密码为123456 已存在一个表student中有五个学生的信息,姓名,性别,年龄,分数.
+	id(varchar(20))       name(varchar(20))      sex(varchar(20))     score(int(10))
+	 1                    李少荣                 女                   80
+	 2                    邵凯                   男                   75
+	 3                    周强                   男                   95
+	 4                    王晓婷                 女                   55
+	 5                    张秀花                 女                   68
+	 6                    顾会                   女                   50
+	 7                    赵天一                 男                   32
+	(1)查询女性,成绩80以上的学生数量
+	(2)将姓张的男同学的的成绩改为100
+	(3)查询成绩大于60的女性,显示姓名,性别,成绩
+	(4)分别统计所有男同学的平均分，所有女同学的平均分及总平均分
+	(5)按照分数从小到大的顺序打印分数大于总平均分的学员信息(id-name-sex-score),并将分数大于总平均分的学员信息(按照分数从小到大的顺序)(id-name-sex-score)写入到studentInfo.txt文件中(写入格式：id-name-sex-score)
+	(6)定义查询所有学生的方法public List<Student> getAllStudent(){}
+	(7)定义根据id查询学生的方法public Student getStudentById(String id){}
+	(8)定义根据id删除学生的方法public int deleteStudentById(String id){}//注意只有数据库中有才能删除，没有无法删除
+	(9)定义添加学员的方法public int addStudent(){}//注意只有数据库中没有有才能添加，有无法添加
+	(10)定义根据id修改学员的信息public int updateStudentById(String id){}//注意只有数据库中有才能修改，没有无法修改
+
+3.练习今天课堂代码

@@ -1,0 +1,237 @@
+1.简述Scanner类及Random类的功能和使用方式？
+Scanner 类用来接收家农安录入的数据 Random 用来产生伪随机数
+2.if语句的格式有几种?注意事项是什么?分别在什么时候使用?
+if(){...}
+if(...){}else if(...){}else if (...){}else{}
+if(...){}else{}
+3.for循环、while循环、do-while循环的格式是什么？简述执行流程及注意事项？
+
+for (){}
+while(){}
+do{}while();
+
+5.简述break、continue及循环标号的作用？
+直角三角形：
+代码：
+public class Demo{
+	public static void main (String args[]){
+		for (int a = 0 ; a < 8 ;a++){
+			for (int b = 8; b > a ; b--){
+				System.out.print(" ");
+			}
+			for (int b = 1; b < a*2 ; b++){
+				System.out.print("*");//1,3,5,7
+			}
+			System.out.println();
+		}
+	}
+}
+break结束当前循环
+contiune 跳出本次循环
+在任何内循环内可以通过查找标号的方式来实现结束和挑传操作
+
+6.编写程序，生成5个1至10之间的随机整数，并打印结果到控制台。
+import java.util.Random;
+public class RandomDemo{
+	public static void main (String args[]){
+		for (int a = 0 ; a < 5 ; a++){
+			System.out.println(new Random().nextInt(10)+1);
+		}
+		
+	}
+}
+
+7.计算1-100之间的质数有多少个？将质数以及质数总数打印在控制台。
+
+//1-100之间的质数 只能被1和其本身整除
+public class PrimeNumberDemo{
+	public static void main (String args[]){
+		System.out.println(1);
+		for (int a = 1 ;  a <=100 ; a++){
+			int b = 2;
+			while(b < a){
+				if (a % b == 0){
+					break;
+				}
+				b++;
+			}
+			if(a == b){
+				System.out.println(b);
+			}
+		}
+	}
+}
+  //质数:只能被1和本身整除的数.
+8.编写程序，打印1到100之内的整数，但数字中包含7的要跳过
+代码1：
+import java.util.*;
+//打印1到100之内的整数，但数字中包含7的要跳过
+public class NumberDemo{
+	public static void main (String[] args){
+		for (int a = 1 ; a <= 100 ; a++){
+			if(!String.valueOf(a).contains("7")){
+				System.out.print(a+" ");
+			}
+		}
+	}
+}
+代码2：
+
+//打印1到100之内的整数，但数字中包含7的要跳过
+public class User {
+	public static void main(String[] args) {
+		int ge, shi;
+		for (int a = 1; a <= 100; a++) {
+			ge = a % 10;
+			shi = a / 10 % 10;
+			if (a < 10) {
+				if (!(a == 7)) {
+					System.out.print(a+" ");
+				}
+			} else {
+				if (!(ge == 7 || shi == 7)) {
+					System.out.print(a+" ");
+				}
+			}
+		}
+	}
+}
+
+代码3：
+public class User {
+	public static void main(String[] args) {
+		for (int a = 1 ; a <= 100; a++){
+			if(a % 10 == 7 || a / 10 % 10 == 7){
+				continue;
+			}
+			System.out.println(a);
+		}
+	}
+}
+
+9.练习题(完善下面的代码)
+	for(int x=1; x<=10; x++) {
+		if(x%3==0) {
+			if (x / 3 == 1){
+				break;
+			}
+		}
+		System.out.println(“Java基础班”);
+	}
+	
+	我想在控制台输出2次:“Java基础班“
+	for (int x = 1; x <= 10; x++) {
+			if (x % 3 == 0) {
+				continue;
+			}
+			System.out.println("Java基础班");
+		}
+	我想在控制台输出7次:“Java基础班“
+	for (int x = 1; x <= 10; x++) {
+			if (x % 3 == 0) {
+				System.out.println("Java基础班");
+			}
+			System.out.println("Java基础班");
+		}
+	我想在控制台输出13次:“Java基础班“
+10.我国最高山峰是珠穆朗玛峰，8848米。现在我有一张足够大的纸，它的厚度是0.01米。请问，我折叠多少次，可以折成珠穆朗玛峰的高度。
+	public static void main(String[] args) {
+		double paperThick = 0.01;
+		int count = 0;
+		while (true){
+			if (paperThick < 8848.0){
+				count++;
+				paperThick = paperThick * 2.0;
+				System.out.println("第"+count+"次折"+paperThick+"M");
+			}else{
+				break;
+			}
+		}
+		System.out.println("一共能折"+count+"次");
+	}
+
+11.看程序写结果：请自己独立分析，先不要编译运行。
+	第一题
+	int x = 1,y = 1;
+
+	if(x++==2 & ++y==2)
+	{
+		x =7;
+	}
+	System.out.println("x="+x+",y="+y);  
+	
+	//x=2 y=2
+	---------------------------------------------------
+	第二题
+	int x = 1,y = 1;
+
+	if(x++==2 && ++y==2)
+	{
+		x =7;
+	}
+	System.out.println("x="+x+",y="+y);
+	
+	//x=2 y = 1
+	---------------------------------------------------
+	第三题
+	int x = 1,y = 1;
+
+	if(x++==1 | ++y==1) 
+	{
+		x =7;
+	}
+	System.out.println("x="+x+",y="+y);
+
+	//x = 7 y = 2
+	---------------------------------------------------
+	第四题
+	int x = 1,y = 1;
+
+	if(x++==1 || ++y==1) 
+	{
+		x =7;
+	}
+	System.out.println("x="+x+",y="+y);
+
+	//x = 7 y = 1
+	---------------------------------------------------
+	第五题//b
+	boolean b = true;
+
+	if(b==false) 
+		System.out.println("a");
+	else if(b)
+		System.out.println("b");//true
+	else if(!b)
+		System.out.println("c");
+	else
+		System.out.println("d");
+
+	---------------------------------------------------
+	
+	
+12.需求：
+	* 键盘录入x的值，计算出y的并输出。		
+	* x>=3	y = 2 * x + 1;
+	* -1<x<3	y = 2 * x;
+	* x<=-1	y = 2 * x - 1;
+
+代码：
+public static void main(String[] args) {
+		@SuppressWarnings("resource")
+		int x = new Scanner(System.in).nextInt();
+		System.out.println("y = " + (x >= 3 ? ((2 * x) + 1) : x > -1 && x < 3 ? 2 * x : x <= -1 ? ((2 * x) - 1) : ""));
+
+	}
+
+13.键盘录入三个整数，并将三个数据中的最大值打印在控制台。
+代码：
+public static void main(String[] args) {
+		@SuppressWarnings("resource")
+		int x = new Scanner(System.in).nextInt();
+		@SuppressWarnings("resource")
+		int y = new Scanner(System.in).nextInt();
+		@SuppressWarnings("resource")
+		int z = new Scanner(System.in).nextInt();
+		System.out.println("max = " + (Math.max(Math.max(x, y), z)));
+	}

@@ -1,0 +1,288 @@
+1.分析以下需求，并用代码实现(每个小需求都要封装成一个方法)：
+	(1)键盘录入两个数据,求两个数据之和(整数和小数)
+	(2)键盘录入两个数据,判断两个数据是否相等(整数和小数)
+	(3)键盘录入三个数据,获取两个数中较大的值(整数和小数)
+	(4)打印m行n列的星形矩形
+	(5)打印nn乘法表
+	(6)计算长方形和圆形的面积
+
+2.分析以下需求，并用代码实现：(封装成方法)
+	(1)打印1到100之内的整数，但数字中包含9的要跳过
+	(2)每行输出5个满足条件的数，之间用空格分隔
+	(3)如：
+		1 2 3 4  5
+		6 7 8 10 11
+	
+2.分析以下需求，并用代码实现：(封装成方法)
+	(1)打印1-100之间的所有素数及个数
+	(2)每行输出5个满足条件的数，之间用空格分隔
+	注意：大于1的能被1和其本身整除的数叫素数。
+	
+以上作业代码如下：
+package cn.itheima.method_01;
+
+public class HomeWork {
+
+	/**
+	 * (1)键盘录入两个数据,求两个数据之和(整数和小数)
+	 */
+	public static long add(long a, long b) {
+		return a + b;
+	}
+
+	public static double add(double a, double b) {
+		return a + b;
+	}
+
+	/**
+	 * (2)键盘录入两个数据,判断两个数据是否相等(整数和小数)
+	 */
+	public static boolean equals(long a, long b) {
+		return a == b;
+	}
+
+	public static boolean equals(double a, double b) {
+		return a == b;
+	}
+
+	/**
+	 * (3)键盘录入三个数据,获取两个数中较大的值(整数和小数)
+	 */
+	public static long max(long a, long b, long c) {
+		return a > b ? a : b > c ? a > b ? a : b : c;
+	}
+
+	public static double max(double a, double b, double c) {
+		return a > b ? a : b > c ? a > b ? a : b : c;
+	}
+
+	/**
+	 * (4)打印m行n列的星形矩形
+	 */
+	public static void printXing(int n, int m) {
+		for (int a = 0; a < n; a++) {
+			for (int b = 0; b < m; b++) {
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+	}
+
+	/**
+	 * (5)打印nn乘法表 (6)计算长方形和圆形的面积
+	 */
+	public static void printNn(int n) {
+		for (int a = 1; a <= n; a++) {
+			for (int b = 1; b <= a; b++) {
+				System.out.print(b + "+" + a + "=" + a * b + "\t");
+			}
+			System.out.println();
+		}
+	}
+
+	/**
+	 * (6)计算长方形的面积
+	 */
+	public static double rectangleArea(int a, int b) {
+		return a * b;
+	}
+
+	/**
+	 * (6)计算圆形的面积
+	 * 
+	 */
+	public static double circleArea(double r) {
+		return Math.PI * (r * r);
+	}
+
+	/**
+	 * 2.分析以下需求，并用代码实现：(封装成方法) (1)打印1到100之内的整数，但数字中包含9的要跳过
+	 * (2)每行输出5个满足条件的数，之间用空格分隔 (3)如： 1 2 3 4 5 6 7 8 10 11
+	 */
+	public static void printIntNumber() {
+		int count = 0;
+		for (int a = 0; a < 100; a++) {
+			if (a / 10 == 9 || a % 10 == 9) {
+				continue;
+			}
+			if (count % 5 == 0) {
+				System.out.println();
+			}
+			count++;
+			System.out.print(a + " ");
+		}
+	}
+
+	/**
+	 * 2.分析以下需求，并用代码实现：(封装成方法) (1)打印1-100之间的所有素数及个数 (2)每行输出5个满足条件的数，之间用空格分隔
+	 * 注意：大于1的能被1和其本身整除的数叫素数。
+	 */
+	public static void printPrime() {
+		int a, b, count = 0;
+		for (a = 100; a <= 200; a++) {
+			for (b = 10; b < a; b++) {
+				if (a % b == 0) {
+					break;
+				}
+			}
+			if (a == b) {
+				if (count % 5 == 0) {
+					System.out.println();
+				}
+				count++;
+				System.out.print(a + " ");
+				
+			}
+		}
+	}
+}
+
+
+//库存案例
+package cn.itheima.method_01;
+
+import java.util.Scanner;
+
+/**
+ * 管理员能够进行的操作有3项（查看、修改、退出），我们可以采用（switch）菜单的方式来完成。 -------------库存管理------------
+ * 1.查看库存清单 2.修改商品库存数量 3.退出 请输入要执行的操作序号： 每一项功能操作，我们采用方法进行封装，这样，可使程序的可读性增强。
+ * 选择“1.查看库存清单”功能，则控制台打印库存清单 选择“2.修改商品库存数量”功能，则对每种商品库存数进行更新
+ * 选择“3.退出”功能，则退出库存管理，程序结束
+ * 
+ * @author 边天旭
+ * 
+ */
+public class Test_02 {
+	public static void main(String[] args) {
+		newMain();
+	}
+
+	static int jishu = 3;
+
+	// 主要控制方法
+	public static void newMain() {
+
+		String name[] = { "lenovo", " apple" };
+		double size[] = { 13.2, 14.0 };
+		double price[] = { 6999.99, 8788.09 };
+		int count[] = { 0, 0 };
+		while (true) {
+			switch (printHello()) {
+			case 1:
+				look(name, size, price, count);
+				break;
+			case 2:
+				if (jishu == 0) {
+					System.out.println("对不起 您输入的错误用户名或者密码次数过多 请联系系统管理员！");
+					break;
+				}
+				updata(name, count);
+				break;
+			case 3:
+				System.out.println("谢谢您的使用 再见!");
+				return;
+			default:
+				System.out.println("您的输入有误 请重新输入！");
+			}
+		}
+	}
+
+	// 打印菜单方法
+	public static int printHello() {
+		System.out.println("-------------库存管理------------");
+		System.out.println("1.查看库存清单");
+		System.out.println("2.修改商品库存数量");
+		System.out.println("3.退出");
+		return new Scanner(System.in).nextInt();
+	}
+
+	// 打印清单方法
+	public static void look(String name[], double size[], double price[],
+			int count[]) {
+		int sum = 0, money = 0;
+		System.out.println("-----------------商品清单-----------------");
+		System.out.println("品名             尺寸/寸   价格/元           库存/台");
+		for (int a = 0; a < count.length; a++) {
+			System.out.println(name[a] + "    " + size[a] + "   " + price[a]
+					+ "\t " + count[a] + "  ");
+			sum += count[a];
+			money += count[a] * price[a];
+		}
+		System.out.println("库存总量为:" + sum + "台");
+		System.out.println("库存总价为:" + money + "元");
+	}
+
+	// 修改库存方法
+	public static void updata(String name[], int count[]) {
+		System.out.println("请输入管理员账号及密码:");
+		String username = new Scanner(System.in).next();
+		String password = new Scanner(System.in).next();
+		if (password(username, password)) {
+			for (int a = 0; a < count.length; a++) {
+				System.out.println("商品" + name[a] + "的库存修改为:");
+				count[a] = new Scanner(System.in).nextInt();
+				System.out.println("修改成功！");
+			}
+		} else {
+			jishu--;
+			if (jishu > 0) {
+				System.out.println("用户名或者密码输入错误请重新输入！您还有" + jishu + "次机会！");
+			} else {
+				System.out.println("对不起 您输入的错误用户名或者密码次数过多 请联系系统管理员！");
+			}
+			return;
+		}
+	}
+
+	// 管理员密码方法
+	public static boolean password(String username, String password) {
+		boolean flag = false;
+		if (username.equals("admin") && password.equals("admin")) {
+			flag = true;
+		} else {
+			flag = false;
+		}
+		return flag;
+	}
+}
+
+
+
+//随机点名器案例
+
+package cn.itheima.method_01;
+
+import java.util.Arrays;
+import java.util.Random;
+
+public class Test_01 {
+	public static void main(String[] args) {
+		newMain();
+	}
+	//主要控制方法
+	public static void newMain() {
+		String names[] = new String[5];
+		addStudentName(names);
+		printStudentName(names);
+		System.out.println("幸运学生是:" + randomStudentName(names));
+	}
+
+	// 学生随机点名方法
+	private static String randomStudentName(String[] names) {
+		return names[new Random().nextInt(names.length)];
+	}
+
+	// 现实所有姓名方法
+	private static void printStudentName(String names[]) {
+		System.out.println(Arrays.toString(names));
+	}
+
+	// 添加学生姓名方法
+	public static void addStudentName(String names[]) {
+		names[0] = "张三";
+		names[1] = "李四";
+		names[2] = "王五";
+		names[3] = "赵六";
+		names[4] = "曹七";
+	}
+}

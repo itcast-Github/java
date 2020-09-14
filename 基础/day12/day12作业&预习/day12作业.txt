@@ -1,0 +1,204 @@
+1、构造方法的格式是什么？有哪些注意事项？
+权限修饰符 类名(参数列表){方法体}
+
+2、构造方法可以重载吗？ 里边可以有return语句吗？
+可以重载 可以有return但不能有返回值 
+
+
+3、给成员变量赋值有几种方式？有什么区别？
+get/set
+直接赋值
+带参构造器赋值
+初始化
+static 代码块赋值
+默认构造器赋值
+
+
+4.编写一个完整的Person类,使用this关键字给成员变量进行赋值.
+ 在测试类中测试
+代码：
+
+public class HomeWork {
+	public static void main(String[] args) {
+		Person p = new Person();
+		p.run();
+		System.out.println(p.getAge());
+		System.out.println(p.getName());
+	}
+}
+
+class Person {
+	private int age;
+	private String name;
+
+	public int getAge() {
+		return age;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void run() {
+		this.age = 10;
+		this.name = "边天旭";
+	}
+}
+
+5、根据需求，完成如下代码（按照标准格式写），并在测试类中进行测试。
+	标准格式包含: 私有属性   无参构造  有参构造  setter 和getter 需求中的方法
+	需求一：
+		员工类Employee
+			属性：姓名name,工号id,工资salary 
+			行为：显示所有成员信息的方法show()
+代码：
+
+class Employee {
+	private String name;
+	private String id;
+	private double salary;
+
+	public Employee() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Employee(String name, String id, double salary) {
+		super();
+		this.name = name;
+		this.id = id;
+		this.salary = salary;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+
+	public void show() {
+		System.out.println("姓名:" + this.name);
+		System.out.println("工号:" + this.id);
+		System.out.println("工资:" + this.salary);
+	}
+}
+	需求二：
+		动物类Animal
+			属性:姓名name,年龄age
+			行为:吃饭eat，睡觉sleep
+代码：
+
+class Animal {
+	private String name;
+	private int age;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public Animal(String name, int age) {
+		super();
+		this.name = name;
+		this.age = age;
+	}
+
+	public Animal() {
+		super();
+	}
+
+	public void eat() {
+		System.out.println("动物吃饭");
+	}
+
+	public void sleep() {
+		System.out.println("动物睡觉");
+	}
+}
+
+	需求三：
+		人类Person
+			属性:姓名name,年龄age,性别gender
+			行为:学习study,睡觉sleep
+
+
+代码：
+
+class person {
+	private String name;
+	private int age;
+	private char gender;
+
+	public person() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public person(String name, int age, char gender) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.gender = gender;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public char getGender() {
+		return gender;
+	}
+
+	public void setGender(char gender) {
+		this.gender = gender;
+	}
+
+	public void study() {
+		System.out.println("学生学习");
+	}
+
+	public void sleep() {
+		System.out.println("学生睡觉");
+	}
+}

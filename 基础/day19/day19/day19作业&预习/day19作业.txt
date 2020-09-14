@@ -1,0 +1,20 @@
+1、分析以下需求，并用代码实现：
+	(1)有如下代码：
+		public static void main(String[] args) {
+			List<String> list = new ArrayList<>();
+			list.add("a");
+			list.add("f");
+			list.add("b");
+			list.add("c");
+			list.add("a");
+			list.add("d");
+			 
+		}
+        (2)利用HashSet对list集合去重(最终结果:list中没有重复元素)
+2、:自己写出contains 方法
+
+
+3、分析以下需求，并用代码实现： (1)编写一个泛形方法，实现指定位置数组元素的交换 (2)编写一个泛形方法，接收一个任意数组，并反转数组中的所有元素	
+
+4.将"goOd gooD stUdy dAy dAy up"
+	 每个单词的首字母转换成大写其余还是小写字母(不许直接输出good good study day day up 要用代码实现)

@@ -1,0 +1,290 @@
+1.编写代码实现如下内容：if语句实现考试成绩分等级(使用switch语句)。
+	[90-100]	A等。
+	[80-90) 	B等。
+	[70-80) 	C等。
+	[60-70) 	D等。
+	[0-60)  	E等。
+	请根据给定成绩，输出对应的等级。
+	说明："["表示包含，")"表示不包含
+代码：
+
+import java.util.Scanner;
+
+/*
+ * 编写代码实现如下内容：if语句实现考试成绩分等级(使用switch语句)。
+	[90-100]	A等。
+	[80-90) 	B等。
+	[70-80) 	C等。
+	[60-70) 	D等。
+	[0-60)  	E等。
+	请根据给定成绩，输出对应的等级。
+	说明："["表示包含，")"表示不包含
+ */
+public class Demo2 {
+	public static void main(String[] args) {
+		// 键入学生成绩
+		char c;
+		while (true) {
+			System.out.println("请输入学生成绩");
+			@SuppressWarnings("resource")
+			int studentScore = new Scanner(System.in).nextInt();
+			if (studentScore >= 90 && studentScore <= 100) {
+				c = 'A';
+				break;
+			} else if (studentScore >= 80 && studentScore < 90) {
+				c = 'B';
+				break;
+			} else if (studentScore >= 70 && studentScore < 80) {
+				c = 'C';
+				break;
+			} else if (studentScore >= 60 && studentScore < 70) {
+				c = 'D';
+				break;
+			} else if (studentScore >= 0 && studentScore < 60) {
+				c = 'E';
+				break;
+			} else {
+				System.out.println("数值超出范围,请重新输入！");
+			}
+		}
+		switch (c) {
+		case 'A':
+			System.out.println("A");
+			break;
+		case 'B':
+			System.out.println("B");
+			break;
+		case 'C':
+			System.out.println("C");
+			break;
+		case 'D':
+			System.out.println("D");
+			break;
+		case 'E':
+			System.out.println("E");
+			break; 
+		default:
+			System.out.println("出现错误！");
+		}
+	}
+}
+
+2.分析以下需求，并用代码实现：
+	(1)根据工龄(整数)给员工涨工资(整数),工龄和基本工资通过键盘录入
+	(2)涨工资的条件如下：
+		[10-15)     +5000
+		[5-10)      +2500
+		[3~5)       +1000
+		[1~3)       +500
+		[0~1)       +200
+	(3)如果用户输入的工龄为10，基本工资为3000，程序运行后打印格式"您目前工作了10年，基本工资为 3000元, 应涨工资 5000元,涨后工资 8000元"
+代码：
+public class Demo5 {
+	@SuppressWarnings("resource")
+	public static void main(String[] args) {
+		// 键盘录入
+		System.out.println("请输入工龄:");
+		int service = Integer.parseInt(new Scanner(System.in).next());
+		System.out.println("请输入基本工资");
+		int basePay = Integer.parseInt(new Scanner(System.in).next());
+		if (service >= 10 && service < 15) {
+			basePay += 5000;
+		}else if (service >= 5 && service < 10){
+			basePay += 2500;
+		}else if (service >= 3 && service < 5){
+			basePay += 1000;
+		}else if (service >= 1 && service < 3){
+			basePay += 500;
+		}else if (service >= 0 && service < 1){
+			basePay += 200;
+		}else{
+			System.out.println("出现错误");
+		}
+		System.out.println("工龄为"+service+"年\t最后工资为"+basePay+"元");
+	}
+}
+
+3.分析以下需求，并用代码实现：
+	(1)键盘录入三个整数，按照从小到大的顺序输出
+	(2)如果用户输入的是3 2 1，程序运行后打印格式"按照从小到大排序后的顺序为：1 2 3"
+import java.util.Scanner;
+
+/*
+(1)键盘录入三个整数，按照从小到大的顺序输出
+ */
+public class Demo2 {
+	public static void main(String[] args) {
+		@SuppressWarnings("resource")
+		String str[] = new Scanner(System.in).nextLine().split(" ");
+		int a = Integer.valueOf(str[0]), b = Integer.valueOf(str[1]), c = Integer.valueOf(str[2]);
+		System.out.println(Math.min(Math.min(a, b), c) + " "
+				+ (a > Math.min(Math.min(a, b), c) && a < Math.max(Math.max(a, b), c) ? a
+						: b > Math.min(Math.min(a, b), c) && b < Math.max(Math.max(a, b), c) ? b
+								: c > Math.min(Math.min(a, b), c) && c < Math.max(Math.max(a, b), c) ? c : 0)
+				+ " " + Math.max(Math.max(a, b), c));
+	}
+}
+
+
+
+4.***看程序，分析下面程序的结果：
+	int x = 2,y=3;
+
+	switch(x)
+	{
+		default:
+			y++;
+		case 3:
+			y++;
+			break;
+		case 4:
+			y++;
+	}
+
+	System.out.println("y="+y);
+答：y = 5;
+
+
+
+5:数组的概念?有什么特点?
+数组是储存相同类型数据的容器
+长度不可变
+元素类型相同
+
+
+6:一维数组的定义格式?
+数组类型 数组名[] = new 数组类型[数组长度];
+数组类型 数组名[] = {元素1，元素2，元素3.....元素n};
+数组类型 数组名[] = new 数组类型[]{元素1，元素2，元素3......元素n};
+
+7:数组操作的两个小问题?
+不能越界
+下标从0开始
+
+
+
+
+8:数组常见操作:
+	数组遍历(依次输出数组中的每一个元素)
+一维数组：
+代码：
+class Demo5 {
+	public static void main(String[] args) {
+		int arr[] = {1,3,5,7,8,4};
+		for (int a = 0 ; a < arr.length ; a++){
+			System.out.print(arr[a]+" ");
+		}
+	}
+}
+
+二维数组：
+代码：
+class Demo5 {
+	public static void main(String[] args) {
+		int arr[][] = {{1,2,4,5},{4,3,6,3}};
+		for (int a = 0 ; a < arr.length ; a++){
+			for (int b = 0 ; b < arr[a].length;b++){
+				System.out.print(arr[a][b]+" ");
+			}
+			System.out.println();
+		}
+	}
+}
+
+
+	数组获取最值(获取数组中的最大值最小值)
+代码：
+class Demo5 {
+	public static void main(String[] args) {
+		int arr[] = { 2, 4, 6, 7, 8, 9, 5, 7 };
+		for (int a = 0; a < arr.length; a++) {
+			for (int b = 0; b < arr.length; b++) {
+				if (arr[a] < arr[b]) {
+					int temp = arr[a];
+					arr[a] = arr[b];
+					arr[b] = temp;
+				}
+			}
+		}
+		System.out.println("max = "+arr[arr.length-1]);
+	}
+}
+
+	数组元素逆序 (就是把元素对调)
+代码：
+class Demo5 {
+	public static void main(String[] args) {
+		// 数组元素逆序 (就是把元素对调)
+		int arr[] = { 1, 2, 4, 5, 6, 7, 8 };
+		for(int a = arr.length-1 ; a >= 0 ; a--){
+			System.out.print(arr[a]+" ");
+		}
+	}
+}
+
+	数组查表法(根据键盘录入索引,查找对应星期)
+代码：
+public class Demo7 {
+	public static void main(String[] args) {
+		String str[] = {"星期一","星期二","星期三","星期四","星期五","星期六","星期日"};
+		System.out.println(str[new Scanner(System.in).nextInt()-1]);
+	}
+}
+	数组元素查找(查找指定元素第一次在数组中出现的索引)
+代码：
+
+class Demo5 {
+	public static void main(String[] args) {
+		// 数组第一次出现的索引
+		int arr[] = { 1, 2, 3, 4, 5, 6, 7 };
+		int number = 7;
+		int index = 0;
+		for (int a = 0; a < arr.length; a++) {
+			if (number == arr[a]) {
+				index = a;
+			} else {
+				index = -1;
+			}
+		}
+		System.out.println(index >= 0 ? ("元素 " + number + " 在数组中的索引是" + index) : "数组中没有元素 " + number);
+	}
+}
+
+
+
+9:案例
+	A:二维数组遍历获取到每一个值
+	int[][] intArr = {{12,3,8},{11,8,32,7},{13,44,55}};
+public class Demo5 {
+	public static void main(String[] args) {
+		int[][] intArr = {{12,3,8},{11,8,32,7},{13,44,55}};
+		for(int a = 0 ; a < intArr.length;a++){
+			for (int b = 0 ; b < intArr[a].length;b++){
+				System.out.print(intArr[a][b]+" ");
+			}
+			System.out.println();
+		}
+	}
+}
+
+
+	B:公司年销售额求和
+		某公司按照季度和月份统计的数据如下：单位(万元)
+		第一季度：22,66,44
+		第二季度：77,33,88
+		第三季度：25,45,65
+		第四季度：11,66,99
+  代码:
+public class Demo5 {
+	public static void main(String[] args) {
+		int sum[][] = { { 22, 66, 44 }, { 77, 33, 88 }, { 25, 45, 65 }, { 11, 66, 99 } };
+		// 求和
+		int count = 0;
+		for (int a = 0; a < sum.length; a++) {
+			for (int b = 0; b < sum[a].length; b++) {
+				count += sum[a][b];
+			}
+		}
+		System.out.println("公司年度销售总额为:"+count+"万元");
+	}
+}

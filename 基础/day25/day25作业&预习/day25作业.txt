@@ -1,0 +1,18 @@
+1.用代码实现以下需求
+	(1)定义学生类,包含姓名(String name),性别(String gender),年龄(int age)三个属性,生成空参有参构造,set和get方法,toString方法
+	(2)键盘录入6个学员信息(录入格式:张三,男,25),要求有两个相同的信息,将6个学员信息存入到ArrayList集合中
+	(3)将存有6个学员信息的ArrayList集合对象写入到D:\\StudentInfo.txt文件中
+	(4)读取D:\\StudentInfo.txt文件中的ArrayList对象
+	(5)对ArrayList集合中的6个学生对象进行去重并按照年龄从小到大的顺序排序
+	(6)将ArrayList集合中排序后的结果利用PrintWriter流写入到E:\\StudentInfo.txt文件中(写入格式：张三-男-25)
+	
+2.用代码实现以下需求：
+	(1)已知配置文件config.properties中有三个键值对
+   		name=zhangsan
+   		score=80
+   		address=beijing
+	(2)使用IO字节流对象和Properties类结合使用,将配置文件中的score键的值修改为100
+
+2.获取指定目录及子目录下所有txt文件的个数，并将这些txt文件复制到D盘下任意目录
+
+3.练习今天课堂代码

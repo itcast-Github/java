@@ -1,0 +1,351 @@
+1.ArrayList<Integer> list = new ArrayList<Integer>(); 
+	这个泛型为Integer的ArrayList中存放一个String类型的对象
+	
+	package com.itheima.tests;
+	import java.lang.reflect.Method;
+	import java.util.ArrayList;
+	import java.util.HashMap;
+
+	/*
+	 * 1.ArrayList<Integer> list = new ArrayList<Integer>(); 
+		为这个泛型为Integer的ArrayList中存放一个String类型的对象
+	 */
+	public class Test01 {
+		public static void main(String[] args) throws Exception {
+			ArrayList<Integer> list = new ArrayList<Integer>(); 
+			list.add(10);
+			System.out.println(list);
+			//通过反射获取ArrayList集合的字节码对象
+			Class clazz = Class.forName("java.util.ArrayList");
+			//通过反射获取add方法
+			Method addMethod = clazz.getMethod("add", Object.class);
+			//通过反射调用addMethod方法
+			addMethod.invoke(list, "reflect is very good!");
+			System.out.println(list);
+	//		HashMap<Integer,Integer> hm = new HashMap<>();
+		}
+	}
+	
+2.用反射去创建一个对象，有2种方式，尽量用代码去体现
+
+	package com.itheima.tests;
+	import java.lang.reflect.Constructor;
+	/**
+	 * 2.用反射去创建一个对象，有2种方式，尽量用代码去体现
+	 * @author JX
+	 *
+	 */
+	public class Test02 {
+		public static void main(String[] args) throws Exception {
+			//获取Student类的字节码对象
+			Class clazz = Class.forName("com.itheima.tests.Student");
+			//1.利用反射创建一个空的对象
+			Student student = (Student)clazz.newInstance();
+			/*//2.获取字段
+			Field ageField = clazz.getDeclaredField("age");
+			Field nameField = clazz.getDeclaredField("name");
+			//取出私有属性
+			ageField.setAccessible(true);
+			nameField.setAccessible(true);
+			//3.给字段设置值
+			ageField.set(student, 30);
+			nameField.set(student, "张三");
+			System.out.println(student);*/
+			
+			/*Method setAgeMethod = clazz.getMethod("setAge", int.class);
+			Method setNameMethod = clazz.getMethod("setName", String.class);
+			setAgeMethod.invoke(student, 38);
+			setNameMethod.invoke(student, "柳岩");
+			System.out.println(student);*/
+			//获取有参构造
+			Constructor constructor = clazz.getConstructor(int.class,String.class);
+			
+			Student stu = (Student)constructor.newInstance(30,"张亮");
+			System.out.println(stu);
+		}
+	}
+	class Student {
+		private int age;
+		private String name;
+		public Student() {
+		}
+		public Student(int age, String name) {
+			super();
+			this.age = age;
+			this.name = name;
+		}
+		public int getAge() {
+			return age;
+		}
+		public void setAge(int age) {
+			this.age = age;
+		}
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		@Override
+		public String toString() {
+			return "Student [age=" + age + ", name=" + name + "]";
+		}	
+	}
+
+3. 编写一个类，增加一个实例方法用于打印一条字符串。
+	并使用反射手段创建该类的对象， 并调用该对象中的方法。
+	
+	package com.itheima.tests;
+	import java.lang.reflect.Method;
+
+	/*
+	 * 3. 编写一个类，增加一个实例方法用于打印一条字符串。
+		并使用反射手段创建该类的对象， 并调用该对象中的方法。
+	 */
+	public class Test03 {
+		public static void main(String[] args) throws Exception {
+			//获取Demo.java的字节码对象
+			Class clazz = Class.forName("com.itheima.tests.Demo");//obj.getClass(); Student.class
+			//利用反射创建对象
+			Demo demo = (Demo)clazz.newInstance();
+			//利用反射获取print方法
+			Method printMethod = clazz.getMethod("print",String.class);
+			printMethod.invoke(demo,"Android");
+		}
+	}
+	class Demo {
+		public Demo() {
+		}
+		public void print(String str ){
+			System.out.println("Hello "+str);
+		}
+	}
+
+	
+4.编写一个类A，增加一个实例方法showString,用于打印一条字符串，
+	在编写一个类TestA ,作为客户端，用键盘输入一个字符串，该字符串就是类A的全名，使用反射机制创建该类的对象，
+	并调用该对象中的方法showString
+	
+	package com.itheima.tests;
+	import java.lang.reflect.Method;
+	import java.util.Scanner;
+
+	/*
+	 * 4.编写一个类A，增加一个实例方法showString,用于打印一条字符串，
+		在编写一个类TestA ,作为客户端，用键盘输入一个字符串，该字符串就是类A的全名，使用反射机制创建该类的对象，
+		并调用该对象中的方法showString
+	 */
+	public class Test04 {
+		public static void main(String[] args) throws Exception{
+			Scanner sc = new Scanner(System.in);
+			System.out.println("请输入一个类的全类名,用.隔开:");
+			String className = sc.nextLine();
+			
+			Class clazz = Class.forName(className);//obj.getClass(); Student.class
+			//利用反射创建对象
+			A a = (A)clazz.newInstance();
+			//利用反射获取print方法
+			Method printMethod = clazz.getMethod("showString");
+			printMethod.invoke(a);		
+		}
+	}
+	class A {
+		public void showString() {
+			System.out.println(" e m t f 明天一定通过!");
+		}
+	}
+
+
+5. 写一个方法，此方法可将obj对象中名为propertyName的属性的值设置为value.   
+	public void setProperty(Object obj, String propertyName, Object value){   
+	}
+	
+	package com.itheima.tests;
+	import java.lang.reflect.Field;
+
+	/**
+	 * 5. 写一个方法，此方法可将obj对象中名为propertyName的属性的值设置为value.   
+		public void setProperty(Object obj, String propertyName, Object value){   
+			
+		}
+	 * @author JX
+	 *
+	 */
+	public class Test05 {
+		public static void main(String[] args) throws Exception {
+			Student student = new Student(30,"张三");
+			setProperty(student, "age", 25);
+			System.out.println(student);
+			
+			Object obj = getProperty(student, "name");
+			System.out.println(obj);
+		}
+		//给对象obj的名字为propertyName的属性设置为value
+		public static void setProperty(Object obj, String propertyName, Object value) throws Exception{   
+			//1.获取obj的字节码对象
+			Class clazz = obj.getClass();
+			//2.获取propertyName属性对应的Field对象
+			Field propertyNameField = clazz.getDeclaredField(propertyName);
+			//3.设置成可访问的
+			propertyNameField.setAccessible(true);
+			//4.调用set方法给对象赋值
+			propertyNameField.set(obj, value);
+			
+		}
+		//给对象obj的名字为propertyName的属性设置为value
+		public static Object getProperty(Object obj, String propertyName) throws Exception{   
+			//1.获取obj的字节码对象
+			Class clazz = obj.getClass();
+			//2.获取propertyName属性对应的Field对象
+			Field propertyNameField = clazz.getDeclaredField(propertyName);
+			//3.设置成可访问的
+			propertyNameField.setAccessible(true);
+			//4.调用get方法获取该对象对应属性的值
+			return propertyNameField.get(obj);
+		}
+	}
+
+	
+	
+6.定义一个标准的JavaBean，名叫Person，包含属性name、age。
+	使用反射的方式创建一个实例、调用构造函数初始化name、age，使用反射方式调用setName方法对名称进行设置，
+	不使用setAge方法直接使用反射方式对age赋值。
+	
+	package com.itheima.tests;
+	import java.lang.reflect.Constructor;
+	import java.lang.reflect.Field;
+	import java.lang.reflect.Method;
+
+	/*
+	 * 6.定义一个标准的JavaBean，名叫Person，包含属性name、age。
+		使用反射的方式创建一个实例、调用构造函数初始化name、age，使用反射方式调用setName方法对名称进行设置，
+		不使用setAge方法直接使用反射方式对age赋值。
+	 */
+	public class Test06 {
+		public static void main(String[] args) throws Exception, SecurityException {
+			//1.获取Person类的字节码对象
+			Class clazz = Person.class;
+			//2.利用反射获取有参构造方法
+			Constructor constructor  = clazz.getConstructor(int.class,String.class);
+			//3.调用构造方法,给属性初始化
+			Person person =  (Person)constructor.newInstance(30,"灭绝师太");
+			System.out.println(person);
+			//4.使用反射方式调用setName方法对名称进行设置
+			Method setNameMethod = clazz.getMethod("setName", String.class);
+			setNameMethod.invoke(person, "张三丰");
+			//5.不使用setAge方法直接使用反射方式对age赋值。
+			Field ageField = clazz.getDeclaredField("age");
+			ageField.setAccessible(true);
+			ageField.set(person, 50);
+			System.out.println(person);
+		}
+	}
+	class Person {
+		private int age;
+		private String name;
+		public Person() {
+		}
+		public Person(int age, String name) {
+			super();
+			this.age = age;
+			this.name = name;
+		}
+		public int getAge() {
+			return age;
+		}
+		public void setAge(int age) {
+			this.age = age;
+		}
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		@Override
+		public String toString() {
+			return "Person [age=" + age + ", name=" + name + "]";
+		}	
+	}
+
+	
+7.已知一个类，定义如下： 
+	package com.itheima; 
+	public class DemoClass { 
+		public void run() { 
+			System.out.println("welcome to heima!"); 
+		} 
+	} 
+	(1)写一个Properties格式的配置文件，配置类的完整名称。
+	(2) 写一个程序，读取这个Properties配置文件，获得类的完整名称并加载这个类，
+	(3)用反射 的方式运行run方法。
+	
+	package com.itheima.tests;
+	import java.io.BufferedReader;
+	import java.io.FileInputStream;
+	import java.io.FileReader;
+	import java.lang.reflect.Method;
+	import java.util.Properties;
+
+	/**
+	 * 7.已知一个类，定义如下： 
+		package com.itheima.tests; 
+		public class DemoClass { 
+			public void run() { 
+				System.out.println("welcome to heima!"); 
+			} 
+		} 
+		(1)写一个Properties格式的配置文件，配置类的完整名称。
+		(2) 写一个程序，读取这个Properties配置文件，获得类的完整名称并加载这个类，
+		(3)用反射 的方式运行run方法。
+	 * @author JX
+	 *
+	 */
+	public class Test07 {
+		public static void main(String[] args) throws Exception {
+			/*Properties props = new Properties();
+			props.load(new FileInputStream("src/config.properties"));
+			String className = (String) props.get("className");*/
+			//定义字符缓冲输入流
+			BufferedReader br = new BufferedReader(new FileReader("src/config.properties"));
+			String line = br.readLine();
+			String className = line.split("=")[1];
+	//		System.out.println(className);
+			Class clazz = Class.forName(className);
+			//利用反射创建一个对象
+			Object obj = clazz.newInstance();
+			//利用反射获取run方法
+			Method runMethod = clazz.getMethod("run");
+			//利用反射调用run方法
+			runMethod.invoke(obj);		
+		}
+	}
+
+	
+8. 写一个方法，此方法可以获取obj对象中名为propertyName的属性的值   
+	public static Object getProperty(Object obj, String propertyName, Object value){ 
+	
+	}
+	
+	package com.itheima.tests2;
+	import java.lang.reflect.Field;
+	public class Test08 {
+		public static void main(String[] args) throws Exception {
+			Person person = new Person(20,"张三");
+			String name = (String)getProperty(person, "name");
+			System.out.println(name);
+			
+		}
+		public static Object getProperty(Object obj, String propertyName) throws Exception{ 
+			//获取obj对象的字节码文件对象
+			Class clazz = obj.getClass();
+			//获取propertyName属性所对应的字段
+			Field field = clazz.getDeclaredField(propertyName);
+			//去掉私有属性
+			field.setAccessible(true);
+			return field.get(obj);
+		}
+		
+	}
+
+

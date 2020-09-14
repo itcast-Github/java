@@ -1,0 +1,437 @@
+1.简述自定义数据类型的定义格式和使用方式？
+class MyObject{}
+class Demo{
+	public static void main(){
+		MyObject m = new MyObject();//定义了数据类型
+	}
+}
+2.简述ArrayList集合的定义格式和常用方法的功能？
+格式:ArrayList<Object> array = new ArrayList<Object>();
+add(Obbject);//直接储存元素
+add(index,Object);在指定位置储存元素
+size();//获取集合长度
+iterator();//获取集合的迭代方式
+set(index,Object);//设置指定元素
+get(index);//获取指定元素
+remove(index);//删除指定位置的元素
+**************************************************************************************************
+4.以下选项错误的是？
+	A.获取数组的长度用length方法//错误 是属性
+	B.获取字符串的长度用length属性//错误 是方法
+	C.获取集合ArrayList的长度用length方法//错误 用size();方法
+	D.获取数组的长度用length属性//正确
+	E.获取字符串的长度用length方法//正确
+	F.获取集合ArrayList的长度用length属性//错误
+	G.获取集合ArrayList的长度用size属性//错误
+	H.获取集合ArrayList的长度用size方法//正确
+
+5.定义一个学生类Student，包含三个属性姓名、年龄、性别，创建三个学生对象存入ArrayList集合中。
+  A：遍历集合遍历输出。
+  B：求出年龄最大的学生，让后将该对象的姓名变为：葫芦娃。
+
+6.定义一个手机类Phone，包含三个属性品牌(brand)、价格(price)、颜色(color)。
+  创建四个手机("小米"、"华为"、"乐视"、"奇酷")对象存入ArrayList集合中，并遍历输出。
+
+7.定义一个员工类Employee，包含三个属性姓名、工号、工资，创建三个员工对象存入ArrayList集合中，并遍历输出。
+
+8.利用上面的三个案例，分别演示ArrayList集合中的以下常用方法：
+	 *  public boolean add(元素类型 e)直接向集合添加元素
+
+	 *  public void add(int index,元素类型 e)在指定索引处向集合添加元素
+	 
+	 *  public 元素类型 remove(int index)删除指定索引位置的元素
+	 
+	 *  public 元素类型 set(int index,元素类型 e)修改指定索引位置的元素
+	 
+	 *  public int size()获取集合长度
+	 
+	 *  public 元素类型 get(int index)根据指定索引获取集合元素
+
+
+以上三题代码实现:
+
+
+package cn.itheima.homework;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+/**
+ * 定义一个学生类Student，包含三个属性姓名、年龄、性别，创建三个学生对象存入ArrayList集合中遍历集合遍历输出。求出年龄最大的学生，
+ * 让后将该对象的姓名变为：葫芦娃。
+ * 
+ * @author 边天旭
+ * 
+ *         定义一个手机类Phone，包含三个属性品牌(brand)、价格(price)、颜色(color)。
+ *         创建四个手机("小米"、"华为"、"乐视"、"奇酷")对象存入ArrayList集合中，并遍历输出。
+ */
+
+public class HomeWork_01 {
+	public static void main(String[] args) {
+		// 定义一个学生类Student，包含三个属性姓名、年龄、性别，创建三个学生对象存入ArrayList集合中。
+		List<Student> list = new ArrayList<Student>();
+		Student s1 = new Student("天旭", 17, "男");
+		Student s2 = new Student("庆哥", 27, "男");
+		Student s3 = new Student("楠姐", 23, "女");
+		list.add(s1);
+		list.add(s2);
+		list.add(s3);
+		// A：遍历集合遍历输出。
+		Iterator<Student> it = list.iterator();
+		int index = 0;
+		int ageArray[] = new int[list.size()];
+		while (it.hasNext()) {
+			System.out.println(it.next());
+			ageArray[index] = list.get(index).getAge();
+			index++;
+		}
+		// B：求出年龄最大的学生，让后将该对象的姓名变为：葫芦娃。
+		int max = ageArray[0];
+		for (int a = 0; a < ageArray.length; a++) {
+			if (max < ageArray[a]) {
+				max = ageArray[a];
+			}
+		}
+		for (Student s : list) {
+			if (s.getAge() == max) {
+				s.setName("葫芦娃");
+			}
+		}
+		System.out.println();
+		for (Student s : list) {
+			System.out.println(s);
+		}
+		System.out.println();
+		List<Phone> list2 = new ArrayList<Phone>();
+		// 创建四个手机("小米"、"华为"、"乐视"、"奇酷")对象存入ArrayList集合中
+		Phone p1 = new Phone("小米", 1999, "白色");
+		Phone p2 = new Phone("华为", 2999, "黑色");
+		Phone p3 = new Phone("乐视", 3999, "绿色");
+		Phone p4 = new Phone("奇酷", 4999, "蓝色");
+		list2.add(p1);
+		list2.add(p2);
+		list2.add(p3);
+		list2.add(p4);
+		// 遍历输出。
+		Iterator it2 = list2.iterator();
+		while (it2.hasNext()) {
+			System.out.println(it2.next());
+		}
+		System.out.println();
+		List<Employee> list3 = new ArrayList<Employee>();
+		Employee e1 = new Employee("刘德华", "9527", 58600);
+		Employee e2 = new Employee("李弘基", "9528", 15680);
+		Employee e3 = new Employee("陈奕迅", "9558", 59700);
+		list3.add(e1);
+		list3.add(e2);
+		list3.add(e3);
+
+		Iterator<Employee> it3 = list3.iterator();
+		while (it3.hasNext()) {
+			System.out.println(it3.next());
+		}
+	}
+}
+
+class Student {
+	String name;
+	int age;
+	String sex;
+
+	public Student() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Student(String name, int age, String sex) {
+		super();
+		this.name = name;
+		this.age = age;
+		this.sex = sex;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	@Override
+	public String toString() {
+		return "姓名:" + name + "  年龄:" + age + "  性别:" + sex;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + age;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((sex == null) ? 0 : sex.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		if (age != other.age)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (sex == null) {
+			if (other.sex != null)
+				return false;
+		} else if (!sex.equals(other.sex))
+			return false;
+		return true;
+	}
+}
+
+/**
+ * 定义一个手机类Phone，包含三个属性品牌(brand)、价格(price)、颜色(color)。
+ */
+class Phone {
+	private String brand;
+	private double price;
+	private String color;
+
+	public Phone() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Phone(String brand, double price, String color) {
+		super();
+		this.brand = brand;
+		this.price = price;
+		this.color = color;
+	}
+
+	public String getBrand() {
+		return brand;
+	}
+
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	@Override
+	public String toString() {
+		return "型号:" + brand + "  价格:" + price + "  颜色:" + color;
+	}
+}
+
+/**
+ * 定义一个员工类Employee，包含三个属性姓名、工号、工资，创建三个员工对象存入ArrayList集合中，并遍历输出。
+ */
+class Employee {
+	private String name;
+	private String number;
+	private double salary;
+
+	public Employee() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Employee(String name, String number, double salary) {
+		super();
+		this.name = name;
+		this.number = number;
+		this.salary = salary;
+	}
+
+	@Override
+	public String toString() {
+		return "姓名:" + name + "  工号:" + number + "  工资:" + salary;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+}
+
+
+
+库存案例:
+import java.util.ArrayList;
+import java.util.Scanner;
+public class Test{
+	public static void main(String args[]){
+		newMain();
+	}
+	//主要方法
+	public static void newMain(){
+		ArrayList<Commer> array = new ArrayList<Commer>();
+		addCommer(array);
+		while(true){
+			switch(helloCommer()){
+			case 1:
+				printCommer(array);
+				break;
+			case 2:
+				updata(array);
+				break;
+			case 3:
+				System.out.println("感谢您的使用 再见！");
+				return ;
+			default:
+				System.out.println("您的输入有误请重新输入！");
+			}
+		}
+	}
+	//界面
+	public static int helloCommer(){
+		System.out.println("-------------库存管理------------");
+		System.out.println("1.查看库存清单");
+		System.out.println("2.修改商品库存数量");
+		System.out.println("3.退出");
+		return new Scanner(System.in).nextInt();
+	}
+	//添加商品元素
+	public static void addCommer(ArrayList<Commer> array){
+		Commer c1 = new Commer();
+		c1.name = "macBook";c1.size = 13.3; c1.price = 8999.99;
+		Commer c2 = new Commer();
+		c2.name = " lenovo";c2.size = 15.6; c2.price = 4399.99;
+		array.add(c1);array.add(c2);
+	}
+	//打印库存清单
+	public static void printCommer(ArrayList<Commer> array){
+		int sum = 0, money = 0;
+		System.out.println("-----------------商品清单-----------------");
+		System.out.println("品名             尺寸/寸   价格/元           库存/台");
+		for (int a = 0; a < array.size(); a++) {
+			System.out.println(array.get(a).name + "    " + array.get(a).size + "   " + array.get(a).price
+					+ "\t " + array.get(a).count + "  ");
+			sum += array.get(a).count;
+			money += array.get(a).count * array.get(a).price;
+		}
+		System.out.println("库存总量为:" + sum + "台");
+		System.out.println("库存总价为:" + money + "元");
+	}
+	//修改库存
+	public static void updata(ArrayList<Commer> array){
+		for (int a = 0; a < array.size();a++){
+			System.out.println("请修改商品"+array.get(a).name+"的库存");
+			array.get(a).count = new Scanner(System.in).nextInt();
+			System.out.println("修改成功！");
+		}
+	}
+}
+class Commer{
+	String name;
+	double price;
+	double size;
+	int count;
+}
+
+
+
+
+点名器案例：
+
+
+//学生类
+import java.util.ArrayList;
+import java.util.Random;
+public class CallNameDemo{
+	public static void main (String args[]){
+		ArrayList<Student> array = new ArrayList<Student>();
+		addStudent(array);
+		look(array);
+		randomStudentName(array);
+	}
+	//存储
+	public static void addStudent(ArrayList<Student> array){
+		Student s1 = new Student();
+		s1.name = "张三";s1.age = 12;
+		Student s2 = new Student();
+		s2.name = "李四";s2.age = 18;
+		Student s3 = new Student();
+		s3.name = "王五";s3.age = 16;
+		Student s4 = new Student();
+		s4.name = "赵六";s4.age = 14;
+		array.add(s1);array.add(s2);
+		array.add(s3);array.add(s4);
+	}
+	//查看
+	public static void look(ArrayList<Student> array){
+		for (int a = 0 ; a < array.size(); a++){
+			System.out.println(array.get(a).name+" "+array.get(a).age+"岁");
+		}
+	}
+	//抽取
+	public static void randomStudentName(ArrayList<Student> array){
+		int random = new Random().nextInt(array.size());
+		System.out.println("幸运学生是 :   "+array.get(random).name+" "+array.get(random).age+"岁");
+	}	
+}
+class Student{
+	int age ;
+	String name;
+}

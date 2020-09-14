@@ -1,0 +1,37 @@
+1.ArrayList<Integer> list = new ArrayList<Integer>(); 
+	这个泛型为Integer的ArrayList中存放一个String类型的对象
+	
+2.用反射去创建一个对象，有2种方式，尽量用代码去体现
+
+3. 编写一个类，增加一个实例方法用于打印一条字符串。
+	并使用反射手段创建该类的对象， 并调用该对象中的方法。
+	
+4.编写一个类A，增加一个实例方法showString,用于打印一条字符串，
+	在编写一个类TestA ,作为客户端，用键盘输入一个字符串，该字符串就是类A的全名，使用反射机制创建该类的对象，
+	并调用该对象中的方法showString
+
+5. 写一个方法，此方法可将obj对象中名为propertyName的属性的值设置为value.   
+	public void setProperty(Object obj, String propertyName, Object value){   
+	}
+	
+6.定义一个标准的JavaBean，名叫Person，包含属性name、age。
+	使用反射的方式创建一个实例、调用构造函数初始化name、age，使用反射方式调用setName方法对名称进行设置，
+	不使用setAge方法直接使用反射方式对age赋值。
+	
+7.已知一个类，定义如下： 
+	package com.itheima; 
+	public class DemoClass { 
+		public void run() { 
+			System.out.println("welcome to heima!"); 
+		} 
+	} 
+	(1)写一个Properties格式的配置文件，配置类的完整名称。
+	(2) 写一个程序，读取这个Properties配置文件，获得类的完整名称并加载这个类，
+	(3)用反射 的方式运行run方法。
+	
+8. 写一个方法，此方法可以获取obj对象中名为propertyName的属性的值   
+	public Object getProperty(Object obj, String propertyName, Object value){ 
+	
+	}
+	
+

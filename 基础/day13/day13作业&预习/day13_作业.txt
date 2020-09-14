@@ -1,0 +1,50 @@
+
+
+1.final修饰类，修饰方法，修饰变量有什么特点?
+
+2、package,import,class之间有没有顺序关系？
+
+3、Java中的权限修饰符有哪些？
+
+4、内部类的访问特点是什么？
+
+5、局部内部类访问局部变量，该局部变量必须用哪个关键字修饰，为什么？
+
+6、内部类的格式?  它的本质是什么？
+
+7、匿名内部类的前提条件，格式分别是什么？
+
+8.代码块的分类? 
+
+9.不运行下面代码: 口述打印结果
+class Student {
+			      static {
+		       System.out.println("Student 静态代码块");
+     	}
+	
+      	{
+		        System.out.println("Student 构造代码块");
+      	}
+	
+       	public Student() {
+		          System.out.println("Student 构造方法");
+       	}
+}
+
+class Demo2_Student {
+      	static {
+		      System.out.println("Demo2_Student静态代码块");
+      	}
+	
+	      public static void main(String[] args) {
+       	 	System.out.println("我是main方法");
+		
+        		Student s1 = new Student();
+		        Student s2 = new Student();
+      	}
+}
+
+
+10、请编写一个抽象类Phone,两个抽象方法,call()  sendMessage()
+   两个子类OldPhone 和 NewPhone , 其中NewPhone想添加一个玩游戏的功能. 
+   请根据接口的思想实现,并用匿名内部类的方式调用玩游戏的功能.

@@ -1,0 +1,110 @@
+1.分析以下需求，并用代码实现：
+	(1)有如下代码：
+		List<String> list = new ArrayList<>();
+		
+		list.add("a");
+		list.add("a");
+		list.add("a");
+		list.add("b");
+		list.add("b");
+		list.add("c");
+		list.add("d");
+		list.add("d");
+		list.add("d");
+		list.add("d");
+		list.add("d");
+		
+		System.out.println(frequency(list, "a"));	// 3
+		System.out.println(frequency(list, "b"));	// 2
+		System.out.println(frequency(list, "c"));	// 1
+		System.out.println(frequency(list, "d"));	// 5
+		System.out.println(frequency(list, "xxx"));	// 0
+	(2)定义方法统计集合中指定元素出现的次数，如"a" 3,"b" 2,"c" 1
+
+代碼:
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class HomeWork_01 {
+	public static void main(String[] args) {
+		List<String> list = new ArrayList<String>();
+		
+		list.add("a");
+		list.add("a");
+		list.add("a");
+		list.add("b");
+		list.add("b");
+		list.add("c");
+		list.add("d");
+		list.add("d");
+		list.add("d");
+		list.add("d");
+		list.add("d");
+		
+		System.out.println(frequency(list, "a"));	// 3
+		System.out.println(frequency(list, "b"));	// 2
+		System.out.println(frequency(list, "c"));	// 1
+		System.out.println(frequency(list, "d"));	// 5
+//		System.out.println(frequency(list, "xxx"));	// 0
+		//(2)定义方法统计集合中指定元素出现的次数，如"a" 3,"b" 2,"c" 1
+	}
+
+	private static String frequency(List<String> list, String string) {
+		Iterator<String> it = list.iterator();
+		int count = 0;
+		while(it.hasNext()){
+			if(it.next().equals(string)){
+				count ++;
+			}
+		}
+		System.getProperties();
+		return "\""+string+"\"" + " " + count;
+	}
+}
+
+2.分析以下需求，并用代码实现：
+	(1)有如下代码：
+		public static void main(String[] args) {
+			List<String> list = new ArrayList<>();
+			list.add("b");
+			list.add("f");
+			list.add("e");
+			list.add("c");
+			list.add("a");
+			list.add("d");
+			sort(list);
+			System.out.println(list);	// a, b, c, d, e, f
+		}
+	(2)要求对集合中添加的元素排序
+代碼:
+
+import java.util.ArrayList;
+import java.util.List;
+
+//排序
+public class HomeWork_02 {
+	public static void main(String[] args) {
+		List<String> list = new ArrayList<>();
+		list.add("b");
+		list.add("f");
+		list.add("e");
+		list.add("c");
+		list.add("a");
+		list.add("d");
+		sort(list);
+		System.out.println(list); // a, b, c, d, e, f
+	}
+
+	private static void sort(List<String> list) {
+		for (int a = 0; a < list.size(); a++) {
+			for (int b = 0; b < list.size(); b++) {
+				if (list.get(a).toCharArray()[0] < list.get(b).toCharArray()[0]) {
+					String temp = list.get(a);
+					list.set(a, list.get(b));
+					list.set(b, temp);
+				}
+			}
+		}
+	}
+}

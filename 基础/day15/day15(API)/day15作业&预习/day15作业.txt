@@ -1,0 +1,86 @@
+1.用代码演示String类中的以下方法的用法
+	(1)boolean isEmpty(): 判断字符串是不是空串,如果是空的就返回true
+	(2)char charAt(int index): 返回索引上的字符
+	(3)String toLowerCase(): 字符串转成小写
+	(4)String toUpperCase(): 字符串转成大写
+	(5)String repalce(char oldChar, char newChar): 将字符串中的老字符,替换为新字符
+	(6)String repalce(String old, String newstr): 将字符串中的老字符串,替换为新字符串
+	(7)String trim(): 去掉字符串两端空格
+	
+2.分析以下需求，并用代码实现：
+	(1)定义如下方法public static String getPropertyGetMethodName(String property);
+	(2)该方法的参数为String类型，表示用户给定的成员变量的名字，返回值类型为String类型，返回值为成员变量对应的get方法的名字
+	(3)如：用户调用此方法时给定的参数为"name",该方法的返回值为"getName"
+	
+3.分析以下需求，并用代码实现：
+	(1)定义数字字符串数组{"010","3223","666","7890987","123123"}
+	(2)判断该数字字符串数组中的数字字符串是否是对称(第一个数字和最后一个数字相等，第二个数字和倒数第二个数字是相等的，依次类推)的，并逐个输出
+	(3)如：010 是对称的，3223 是对称的，123123 不是对称的
+	(4)最终打印该数组中对称字符串的个数
+	
+	提示：循环获取字符串的每一个字符，依次比较第一个和最后一个，第二个和倒数第二个。。。
+	
+4.分析以下需求，并用代码实现：
+	(1)从键盘循环录入录入一个字符串,输入"end"表示结束
+	(2)将字符串中大写字母变成小写字母，小写字母变成大写字母，其它字符用"*"代替,并统计字母的个数
+		举例:
+			键盘录入：Hello12345World
+			输出结果：hELLO*****wORLD
+					  总共10个字母
+					  
+5.分析以下需求，并用代码实现：
+	(1)从键盘循环录入录入一个字符串,输入"end"表示结束
+	(2)定义一个方法
+		public Object[] deleteSubString(String str1,String str2) {
+	
+		}
+	(3)方法功能描述:从str1中删除所有的str2,并返回删除后的结果,返回结果为Object[]数组
+		* 该数组的第一个元素为删除所有的str2后的最终的字符串
+		* 该数组的第二个元素为删除的str2的个数		
+
+6.关于String类的练习题，分析运行结果？
+	public class Test01 {	
+		public static void main(String[] args) {
+			//demo1();
+			//demo2();
+			//demo3();
+			//demo4();
+			demo5();
+		}
+		private static void demo5() {
+			String s1 = "ab";
+			String s2 = "abc";
+			String s3 = s1 + "c";
+			System.out.println(s3 == s2);
+			System.out.println(s3.equals(s2)); 		//true
+		}
+		private static void demo4() {
+			//byte b = 3 + 4;						//在编译时就变成7,把7赋值给b,常量优化机制
+			String s1 = "a" + "b" + "c";//java中有常量优化机制,在编译时期就能确定s2的值为"abc",所以编译时期,在常量池中创建"abc"
+			String s2 = "abc";//执行到这里时常量池中已经有了"abc",所以就不再创建,所以s1和s2指向的是常量池中同一个字符串常量"abc"
+			System.out.println(s1 == s2); 			//true,java中有常量优化机制	
+			System.out.println(s1.equals(s2)); 		//true
+		}
+		private static void demo3() {//==比较的是地址值
+			String s1 = new String("abc");			//录的是堆内存对象的地址值		
+			String s2 = "abc";						//记录的是常量池中的地址值
+			System.out.println(s1 == s2); 			//false
+			System.out.println(s1.equals(s2)); 		//true
+		}
+		private static void demo2() {
+			//创建几个对象
+			//创建两个对象,一个在常量池中,一个在堆内存中
+			String s1 = new String("abc");		
+			System.out.println(s1);
+		}
+		private static void demo1() {				//常量池中没有这个字符串对象,就创建一个,如果有直接用即可
+			String s1 = "abc";
+			String s2 = "abc";
+			System.out.println(s1 == s2); 			//==号比较的是地址值,true	
+			System.out.println(s1.equals(s2)); 		//比较的是字符串的内容:true
+		}
+	}
+	
+7.练习今日课堂中的案例
+	
+
